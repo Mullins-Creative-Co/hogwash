@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import HeroSlideshow from "./HeroSlideshow";
 import ImageSlot from "./ImageSlot";
 import QuoteForm from "./QuoteForm";
+import ScrollReveal from "./ScrollReveal";
 import SurfaceTabs from "./SurfaceTabs";
 import { getHogwashHomeContent } from "../lib/workspace-content";
 
@@ -164,6 +165,7 @@ export default async function Home() {
 
   return (
     <>
+      <ScrollReveal />
       <a className="skip-link" href="#main-content">
         Skip to main content
       </a>
