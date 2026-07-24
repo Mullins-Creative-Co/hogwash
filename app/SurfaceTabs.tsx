@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { KeyboardEvent, useRef, useState } from "react";
 
 const services = [
   {
@@ -37,25 +37,57 @@ const services = [
 
 export default function SurfaceTabs() {
   const [active, setActive] = useState(0);
+  const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const current = services[active];
+
+  const handleKeys = (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
+    let next = index;
+    if (event.key === "ArrowRight") next = (index + 1) % services.length;
+    if (event.key === "ArrowLeft") next = (index - 1 + services.length) % services.length;
+    if (event.key === "Home") next = 0;
+    if (event.key === "End") next = services.length - 1;
+    if (next === index) return;
+    event.preventDefault();
+    setActive(next);
+    tabRefs.current[next]?.focus();
+  };
 
   return (
     <>
-      <div className="surface-tabs" aria-label="Exterior cleaning services">
+      <div
+        className="surface-tabs"
+        role="tablist"
+        aria-label="Exterior cleaning services"
+      >
         {services.map((service, index) => (
           <button
             key={service.label}
+            ref={(element) => {
+              tabRefs.current[index] = element;
+            }}
+            id={`service-tab-${index}`}
             type="button"
-            aria-pressed={index === active}
+            role="tab"
+            aria-selected={index === active}
+            aria-controls="service-panel"
+            tabIndex={index === active ? 0 : -1}
             className={index === active ? "is-active" : undefined}
             onClick={() => setActive(index)}
+            onKeyDown={(event) => handleKeys(event, index)}
           >
             {service.label}
           </button>
         ))}
       </div>
       <div className="feature-grid">
-        <article className="feature-card feature-card--wide" aria-live="polite">
+        <article
+          className="feature-card feature-card--wide"
+          id="service-panel"
+          key={current.label}
+          role="tabpanel"
+          tabIndex={0}
+          aria-labelledby={`service-tab-${active}`}
+        >
           <h3>{current.title}</h3>
           <p>{current.text}</p>
         </article>

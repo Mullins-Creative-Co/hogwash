@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import HeroSlideshow from "./HeroSlideshow";
 import ImageSlot from "./ImageSlot";
+import MobileNav from "./MobileNav";
 import QuoteForm from "./QuoteForm";
 import ScrollReveal from "./ScrollReveal";
 import SurfaceTabs from "./SurfaceTabs";
@@ -50,19 +51,19 @@ const results = [
     caption: "Grimy door and apron cleaned up sharp on a pole barn.",
   },
   {
-    src: "/hogwash/Updates%207-24/1.jpg",
+    src: "/hogwash/updates-2026-07-24/1.jpg",
     tag: "Roof washing",
     alt: "Before and after of dark roof shingles restored with a professional roof wash",
     caption: "Dark organic buildup treated to restore a cleaner, brighter roof.",
   },
   {
-    src: "/hogwash/Updates%207-24/2.jpg",
+    src: "/hogwash/updates-2026-07-24/2.jpg",
     tag: "House washing",
     alt: "Before and after of algae-covered yellow siding restored with a house wash",
     caption: "Heavy algae and grime removed from siding without harsh pressure.",
   },
   {
-    src: "/hogwash/Updates%207-24/3.jpg",
+    src: "/hogwash/updates-2026-07-24/3.jpg",
     tag: "Pavers",
     alt: "Before and after of a brick paver driveway cleaned of weeds and grime",
     caption: "Weeds and buildup cleared to bring the paver pattern back to life.",
@@ -195,6 +196,7 @@ export default async function Home() {
           <a className="button button--dark button--sm" href="#quote">
             Free quote
           </a>
+          <MobileNav />
         </div>
       </header>
 
@@ -280,7 +282,7 @@ export default async function Home() {
             label="Full-width photo"
           />
           <div className="image-band__statement">
-            <p>A cleaner driveway. A brighter deck. A property that looks looked after.</p>
+            <p>A cleaner driveway. A brighter deck. A property you&apos;re proud to come home to.</p>
           </div>
         </section>
 
@@ -413,10 +415,17 @@ export default async function Home() {
               style={{ border: "none", overflow: "hidden" }}
               scrolling="no"
               allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+              loading="lazy"
             />
           </div>
         </section>
       </main>
+
+      <div className="mobile-action-bar" aria-label="Quick quote actions">
+        <a href={phoneHref}>Call</a>
+        <a href="sms:+15623246588">Text</a>
+        <a href="#quote">Online quote</a>
+      </div>
 
       <footer className="footer">
         <div className="footer__brand">
