@@ -752,12 +752,17 @@ h3 {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   box-shadow: var(--shadow-sm);
+  transition:
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 220ms ease,
+    box-shadow 220ms ease;
 }
 
 .testimonial-card__stars {
   color: #f5a623;
   font-size: 1.05rem;
   letter-spacing: 2px;
+  transition: transform 220ms ease, text-shadow 220ms ease;
 }
 
 .testimonial-card blockquote {
@@ -777,6 +782,7 @@ h3 {
 .testimonial-card__name {
   font-weight: 700;
   color: var(--ink);
+  transition: color 180ms ease;
 }
 
 .testimonial-card__loc {
@@ -808,6 +814,7 @@ h3 {
   background: var(--surface);
   box-shadow: var(--shadow-sm);
   overflow: hidden;
+  transition: border-color 180ms ease, box-shadow 180ms ease;
 }
 
 .faq-item summary {
@@ -967,6 +974,10 @@ h3 {
   background: linear-gradient(160deg, var(--blue-tint), var(--surface) 52%);
   padding: clamp(24px, 3vw, 40px);
   box-shadow: var(--shadow-sm);
+  transition:
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 220ms ease,
+    box-shadow 220ms ease;
 }
 
 .feature-card h3 {
@@ -1046,6 +1057,10 @@ h3 {
   border-radius: var(--radius);
   background: var(--surface);
   box-shadow: var(--shadow-sm);
+  transition:
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 220ms ease,
+    box-shadow 220ms ease;
 }
 
 .process-card__num {
@@ -1061,6 +1076,7 @@ h3 {
   font-family: var(--font-display);
   font-size: 1rem;
   font-weight: 700;
+  transition: background 180ms ease, color 180ms ease, transform 220ms ease;
 }
 
 .process-card h3 {
@@ -1279,6 +1295,45 @@ h3 {
 
 .footer__phone:hover {
   color: var(--blue-dark);
+}
+
+/* Pointer hover polish ------------------------------------------------ */
+
+@media (hover: hover) and (pointer: fine) {
+  .testimonial-card:hover {
+    z-index: 1;
+    transform: translateY(-7px) scale(1.025);
+    border-color: rgba(21, 115, 212, 0.34);
+    box-shadow: 0 22px 48px rgba(14, 27, 42, 0.16);
+  }
+
+  .testimonial-card:hover .testimonial-card__stars {
+    transform: scale(1.08);
+    transform-origin: left center;
+    text-shadow: 0 4px 14px rgba(245, 166, 35, 0.32);
+  }
+
+  .testimonial-card:hover .testimonial-card__name {
+    color: var(--blue-dark);
+  }
+
+  .process-card:hover,
+  .feature-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(21, 115, 212, 0.3);
+    box-shadow: var(--shadow-md);
+  }
+
+  .process-card:hover .process-card__num {
+    background: var(--blue);
+    color: var(--surface);
+    transform: rotate(-4deg) scale(1.08);
+  }
+
+  .faq-item:hover {
+    border-color: rgba(21, 115, 212, 0.3);
+    box-shadow: var(--shadow-md);
+  }
 }
 
 /* Responsive ---------------------------------------------------------- */
