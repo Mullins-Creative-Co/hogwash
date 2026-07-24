@@ -161,6 +161,8 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Home() {
   const workspaceContent = await getHogwashHomeContent();
+  const home = workspaceContent?.homeSections;
+  const heroTitle = workspaceContent?.header || "Restore. Protect. Impress.";
   const heroDescription =
     workspaceContent?.body ||
     "Hogwash strips away years of dirt, algae, and grime from the surfaces people notice first, using professional equipment and the right pressure for every surface. You'll see the difference from the street.";
@@ -208,7 +210,7 @@ export default async function Home() {
             <p className="eyebrow eyebrow--light">
               Professional exterior cleaning for homes, driveways, decks &amp; rigs
             </p>
-            <h1 id="hero-title">Restore. Protect. Impress.</h1>
+            <h1 id="hero-title">{heroTitle}</h1>
             <p className="hero-grand__lede">
               {heroDescription}
             </p>
@@ -231,13 +233,8 @@ export default async function Home() {
         <section className="intro" aria-labelledby="intro-title">
           <div className="intro__copy">
             <p className="eyebrow">Local &amp; owner-operated</p>
-            <h2 id="intro-title">Grime costs more than a wash does.</h2>
-            <p>
-              Dirt, mold, and algae don&apos;t just look bad. Left alone, they
-              slowly break down concrete, wood, and siding. A good wash protects
-              what you&apos;ve put into your property and saves you from repairs
-              down the road. Take a look at the before and afters below.
-            </p>
+            <h2 id="intro-title">{home?.introHeading || "Grime costs more than a wash does."}</h2>
+            <p>{home?.introBody || "Dirt, mold, and algae don't just look bad. Left alone, they slowly break down concrete, wood, and siding. A good wash protects what you've put into your property and saves you from repairs down the road. Take a look at the before and afters below."}</p>
           </div>
           <ImageSlot
             className="intro__photo"
@@ -251,11 +248,8 @@ export default async function Home() {
         <section className="results" id="results" aria-labelledby="results-title">
           <div className="results__top">
             <p className="eyebrow">Before &amp; after</p>
-            <h2 id="results-title">Real jobs. Real difference.</h2>
-            <p>
-              Every one of these is an actual Hogwash job. Same surface, same
-              day, just a whole lot cleaner.
-            </p>
+            <h2 id="results-title">{home?.resultsHeading || "Real jobs. Real difference."}</h2>
+            <p>{home?.resultsBody || "Every one of these is an actual Hogwash job. Same surface, same day, just a whole lot cleaner."}</p>
           </div>
           <ul className="results-grid" aria-label="Before and after cleaning results">
             {results.map((item) => (
@@ -283,18 +277,15 @@ export default async function Home() {
             label="Full-width photo"
           />
           <div className="image-band__statement">
-            <p>A cleaner driveway. A brighter deck. A property you&apos;re proud to come home to.</p>
+            <p>{home?.brandStatement || "A cleaner driveway. A brighter deck. A property you're proud to come home to."}</p>
           </div>
         </section>
 
         <section className="surface-fit" id="services" aria-labelledby="surface-fit-title">
           <div className="surface-fit__top">
             <p className="eyebrow">Services</p>
-            <h2 id="surface-fit-title">The clean-up list.</h2>
-            <p>
-              Residential and light commercial washing with the right method for
-              every surface. Select a service to see what&apos;s included.
-            </p>
+            <h2 id="surface-fit-title">{home?.servicesHeading || "The clean-up list."}</h2>
+            <p>{home?.servicesBody || "Residential and light commercial washing with the right method for every surface. Select a service to see what's included."}</p>
           </div>
           <SurfaceTabs />
           <dl className="stats-band" aria-label="Hogwash service highlights">
@@ -310,7 +301,7 @@ export default async function Home() {
         <section className="process" id="process" aria-labelledby="process-title">
           <div className="process__top">
             <p className="eyebrow">How it works</p>
-            <h2 id="process-title">Simple from hello to spotless.</h2>
+            <h2 id="process-title">{home?.processHeading || "Simple from hello to spotless."}</h2>
           </div>
           <ol className="process-grid" aria-label="How Hogwash works">
             {steps.map(([num, title, text]) => (
@@ -326,7 +317,7 @@ export default async function Home() {
         <section className="testimonials" id="reviews" aria-labelledby="testimonials-title">
           <div className="testimonials__top">
             <p className="eyebrow">What people say</p>
-            <h2 id="testimonials-title">Neighbors who&apos;d call again.</h2>
+            <h2 id="testimonials-title">{home?.reviewsHeading || "Neighbors who'd call again."}</h2>
             <p className="testimonials__rating">
               <span aria-label="5 out of 5 stars">{"\u2605\u2605\u2605\u2605\u2605"}</span>
               <strong>5.0</strong> from 19 Google reviews
@@ -362,7 +353,7 @@ export default async function Home() {
         <section className="faq" id="faq" aria-labelledby="faq-title">
           <div className="faq__top">
             <p className="eyebrow">Good to know</p>
-            <h2 id="faq-title">Questions, answered.</h2>
+            <h2 id="faq-title">{home?.faqHeading || "Questions, answered."}</h2>
           </div>
           <div className="faq-list">
             {faqs.map((item) => (
@@ -382,12 +373,8 @@ export default async function Home() {
         <section className="quote" id="quote" aria-labelledby="quote-title">
           <div className="quote__copy">
             <p className="eyebrow">Free quote</p>
-            <h2 id="quote-title">Tell us what&apos;s dirty. We&apos;ll handle the rest.</h2>
-            <p>
-              Call or text and we can usually price it right over the phone.
-              Prefer to type? Leave a few details below and Hogwash will follow
-              up with pricing and timing.
-            </p>
+            <h2 id="quote-title">{home?.quoteHeading || "Tell us what's dirty. We'll handle the rest."}</h2>
+            <p>{home?.quoteBody || "Call or text and we can usually price it right over the phone. Prefer to type? Leave a few details below and Hogwash will follow up with pricing and timing."}</p>
             <a className="quote__phone" href={phoneHref} aria-label={`Call or text Hogwash at ${phoneDisplay}`}>
               {phoneDisplay}
             </a>
@@ -398,11 +385,8 @@ export default async function Home() {
         <section className="facebook-section" aria-labelledby="facebook-title">
           <div className="facebook-section__copy">
             <p className="eyebrow">Follow the work</p>
-            <h2 id="facebook-title">The proof is on the page.</h2>
-            <p>
-              Fresh before and afters, availability notes, and updates straight
-              from the Hogwash Facebook page. The work speaks for itself.
-            </p>
+            <h2 id="facebook-title">{home?.facebookHeading || "The proof is on the page."}</h2>
+            <p>{home?.facebookBody || "Fresh before and afters, availability notes, and updates straight from the Hogwash Facebook page. The work speaks for itself."}</p>
             <a className="button button--dark" href={facebookUrl} target="_blank" rel="noreferrer">
               Open Facebook
             </a>

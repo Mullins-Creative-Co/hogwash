@@ -8,6 +8,22 @@ export type PublishedPage = {
   metaTitle: string;
   metaDescription: string;
   updatedAt: string;
+  homeSections?: {
+    introHeading?: string;
+    introBody?: string;
+    resultsHeading?: string;
+    resultsBody?: string;
+    brandStatement?: string;
+    servicesHeading?: string;
+    servicesBody?: string;
+    processHeading?: string;
+    reviewsHeading?: string;
+    faqHeading?: string;
+    quoteHeading?: string;
+    quoteBody?: string;
+    facebookHeading?: string;
+    facebookBody?: string;
+  };
 };
 
 type PublishedSite = {
