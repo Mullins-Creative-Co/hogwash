@@ -518,6 +518,46 @@ body.modal-open {
   }
 }
 
+.cms-page {
+  min-height: calc(100vh - 180px);
+  padding: clamp(80px, 12vw, 170px) clamp(20px, 8vw, 120px);
+  background:
+    radial-gradient(circle at 85% 15%, rgb(21 115 212 / 13%), transparent 34rem),
+    var(--paper);
+}
+
+.cms-page__hero {
+  max-width: 960px;
+}
+
+.cms-page__hero h1 {
+  max-width: 16ch;
+  margin: 14px 0 24px;
+  font-size: clamp(3rem, 8vw, 7.5rem);
+  line-height: 0.94;
+  letter-spacing: -0.055em;
+}
+
+.cms-page__hero > p:not(.eyebrow) {
+  max-width: 65ch;
+  color: var(--quiet);
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  line-height: 1.75;
+  white-space: pre-line;
+}
+
+.cms-page__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 34px;
+}
+
+.cms-page__home {
+  border: 1px solid var(--ink);
+  color: var(--ink);
+}
+
 /* Image slot (placeholder-aware photos) ------------------------------- */
 
 .img-slot {
