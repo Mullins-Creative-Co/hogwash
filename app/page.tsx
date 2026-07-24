@@ -58,13 +58,13 @@ const results = [
     caption: "Dark organic buildup treated to restore a cleaner, brighter roof.",
   },
   {
-    src: "/hogwash/updates-2026-07-24/2.jpg",
+    src: "/hogwash/updates-2026-07-24/3.jpg",
     tag: "House washing",
     alt: "Before and after of algae-covered yellow siding restored with a house wash",
     caption: "Heavy algae and grime removed from siding without harsh pressure.",
   },
   {
-    src: "/hogwash/updates-2026-07-24/3.jpg",
+    src: "/hogwash/updates-2026-07-24/2.jpg",
     tag: "Pavers",
     alt: "Before and after of a brick paver driveway cleaned of weeds and grime",
     caption: "Weeds and buildup cleared to bring the paver pattern back to life.",
