@@ -13,14 +13,36 @@ const facebookEmbedUrl = `https://www.facebook.com/plugins/page.php?href=${encod
   const trustChips = ["Owner-operated", "Free quotes", "Satisfaction guaranteed"];
 
 const services = [
-  "Driveways",
-  "Sidewalks",
-  "Patios",
-  "Decks",
-  "House washing",
-  "Fences",
-  "Containers",
-  "RVs + trailers",
+  {
+    name: "Roof washing",
+    description:
+      "A low-pressure soft wash that treats algae, moss, lichen, and dark streaks without the damage high pressure can cause to shingles.",
+  },
+  {
+    name: "House washing",
+    description:
+      "A gentle exterior wash for siding, trim, soffits, and exterior surfaces that removes dirt, algae, mildew, and organic buildup.",
+  },
+  {
+    name: "Driveways and Concrete",
+    description:
+      "Professional surface cleaning for driveways, sidewalks, patios, and other concrete, followed by a thorough rinse for an even finish.",
+  },
+  {
+    name: "Pavers",
+    description:
+      "Careful cleaning for brick and concrete pavers that lifts weeds, grime, moss, and surface staining while protecting the paver surface.",
+  },
+  {
+    name: "Decks and fences",
+    description:
+      "Surface-appropriate cleaning for wood and composite decks and fences to remove algae, mildew, dirt, and weathered buildup.",
+  },
+  {
+    name: "Gutter cleaning and brightening",
+    description:
+      "Interior debris removal to restore gutter flow, plus exterior brightening to tackle dark streaks, oxidation, and visible grime.",
+  },
 ];
 
 const steps = [
@@ -56,22 +78,22 @@ const results = [
     caption: "Grimy door and apron cleaned up sharp on a pole barn.",
   },
   {
-    src: "/hogwash/container.jpg",
-    tag: "Container",
-    alt: "Before and after of an algae-covered shipping container cleaned to bright white",
-    caption: "Green algae stripped off a storage container in a single pass.",
+    src: "/hogwash/Updates%207-24/1.jpg",
+    tag: "Roof washing",
+    alt: "Before and after of dark roof shingles restored with a professional roof wash",
+    caption: "Dark organic buildup treated to restore a cleaner, brighter roof.",
   },
   {
-    src: "/hogwash/deck-rv.jpg",
-    tag: "Deck",
-    alt: "Before and after of a weathered RV site deck restored to clean golden wood",
-    caption: "Slippery, debris-covered decking cleaned down to fresh wood.",
+    src: "/hogwash/Updates%207-24/2.jpg",
+    tag: "House washing",
+    alt: "Before and after of algae-covered yellow siding restored with a house wash",
+    caption: "Heavy algae and grime removed from siding without harsh pressure.",
   },
   {
-    src: "/hogwash/rv-deck2.jpg",
-    tag: "RV site",
-    alt: "Before and after of an RV campsite deck cleaned from gray to golden brown",
-    caption: "A whole campsite deck refreshed and ready for the season.",
+    src: "/hogwash/Updates%207-24/3.jpg",
+    tag: "Pavers",
+    alt: "Before and after of a brick paver driveway cleaned of weeds and grime",
+    caption: "Weeds and buildup cleared to bring the paver pattern back to life.",
   },
 ];
 
@@ -165,7 +187,7 @@ export default function Home() {
             <p className="eyebrow eyebrow--light">
               Professional exterior cleaning for homes, driveways, decks &amp; rigs
             </p>
-            <h1 id="hero-title">Bring back the curb appeal.</h1>
+            <h1 id="hero-title">Restore. Protect. Impress.</h1>
             <p className="hero-grand__lede">
               Hogwash strips away years of dirt, algae, and grime from the
               surfaces people notice first, using professional equipment and the
@@ -260,11 +282,16 @@ export default function Home() {
           </div>
           <ul className="service-grid" aria-label="Exterior cleaning services">
             {services.map((service) => (
-              <li className="service-card" key={service}>
-                <span className="service-card__label">{service}</span>
-                <span className="service-card__arrow" aria-hidden="true">
-                  &rarr;
-                </span>
+              <li key={service.name}>
+                <details className="service-card">
+                  <summary>
+                    <span className="service-card__label">{service.name}</span>
+                    <span className="service-card__arrow" aria-hidden="true">
+                      +
+                    </span>
+                  </summary>
+                  <p>{service.description}</p>
+                </details>
               </li>
             ))}
           </ul>

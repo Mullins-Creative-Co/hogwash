@@ -351,7 +351,7 @@ h3 {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: calc(100svh - 79px);
+  min-height: clamp(440px, 52svh, 540px);
   overflow: hidden;
   color: var(--surface);
   text-align: center;
@@ -360,7 +360,7 @@ h3 {
 .hero-slides {
   position: absolute;
   inset: 0;
-  background: var(--ink);
+  background: #0b1520;
 }
 
 .hero-slide {
@@ -379,6 +379,16 @@ h3 {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.hero-video {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 48%;
 }
 
 .hero-slide--active img {
@@ -401,10 +411,11 @@ h3 {
   z-index: 1;
   pointer-events: none;
   background: linear-gradient(
-    180deg,
-    rgba(8, 16, 26, 0.62),
-    rgba(11, 46, 78, 0.5) 46%,
-    rgba(8, 14, 20, 0.82)
+    90deg,
+    rgba(8, 16, 26, 0.82) 0%,
+    rgba(8, 25, 40, 0.62) 42%,
+    rgba(11, 46, 78, 0.24) 72%,
+    rgba(8, 14, 20, 0.35) 100%
   );
 }
 
@@ -457,8 +468,10 @@ h3 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 940px;
-  padding: clamp(56px, 8vw, 120px) 24px;
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: clamp(48px, 6vw, 76px) clamp(20px, 5vw, 72px);
 }
 
 .hero-grand .eyebrow--light {
@@ -471,13 +484,14 @@ h3 {
 
 .hero-grand h1 {
   margin-bottom: 20px;
+  max-width: 760px;
   color: var(--surface);
-  font-size: clamp(3rem, 8vw, 7rem);
+  font-size: clamp(2.7rem, 4.5vw, 4.2rem);
   text-shadow: 0 12px 40px rgba(8, 16, 26, 0.5);
 }
 
 .hero-grand__lede {
-  max-width: 620px;
+  max-width: 600px;
   margin-bottom: 0;
   color: rgba(255, 255, 255, 0.92);
   font-size: clamp(1.05rem, 1.4vw, 1.3rem);
@@ -592,19 +606,20 @@ h3 {
   list-style: none;
   margin: 0;
   padding: 0;
-  columns: 1;
-  column-gap: clamp(18px, 2.5vw, 28px);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(18px, 2.5vw, 28px);
 }
 
 @media (min-width: 640px) {
   .results-grid {
-    columns: 2;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (min-width: 1000px) {
   .results-grid {
-    columns: 3;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -612,13 +627,11 @@ h3 {
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-bottom: clamp(18px, 2.5vw, 28px);
   overflow: hidden;
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   box-shadow: var(--shadow-sm);
-  break-inside: avoid;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -869,7 +882,7 @@ h3 {
 
 .service-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
   padding: 0;
   margin: 0;
@@ -877,16 +890,12 @@ h3 {
 }
 
 .service-card {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
   min-height: 130px;
-  padding: 22px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--surface);
   box-shadow: var(--shadow-sm);
+  overflow: hidden;
   transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
 }
 
@@ -894,6 +903,32 @@ h3 {
   transform: translateY(-4px);
   border-color: rgba(21, 115, 212, 0.4);
   box-shadow: var(--shadow-md);
+}
+
+.service-card summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 128px;
+  padding: 22px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.service-card summary::-webkit-details-marker {
+  display: none;
+}
+
+.service-card summary:focus-visible {
+  outline: 3px solid rgba(21, 115, 212, 0.45);
+  outline-offset: -3px;
+}
+
+.service-card p {
+  margin: -10px 22px 24px;
+  color: var(--quiet);
+  line-height: 1.6;
 }
 
 .service-card__label {
@@ -917,10 +952,14 @@ h3 {
   transition: background 180ms ease, color 180ms ease, transform 180ms ease;
 }
 
-.service-card:hover .service-card__arrow {
+.service-card:hover .service-card__arrow,
+.service-card[open] .service-card__arrow {
   background: var(--blue);
   color: var(--surface);
-  transform: translateX(2px);
+}
+
+.service-card[open] .service-card__arrow {
+  transform: rotate(45deg);
 }
 
 /* Surface fit --------------------------------------------------------- */
@@ -1371,6 +1410,27 @@ h3 {
 
   .service-card {
     min-height: 96px;
+  }
+
+  .service-card summary {
+    min-height: 94px;
+  }
+
+  .hero-grand {
+    min-height: 570px;
+  }
+
+  .hero-video {
+    object-position: 62% center;
+  }
+
+  .hero-slides::after {
+    background: linear-gradient(
+      90deg,
+      rgba(8, 16, 26, 0.84),
+      rgba(8, 25, 40, 0.58) 72%,
+      rgba(8, 14, 20, 0.45)
+    );
   }
 
   .image-band {
