@@ -106,6 +106,14 @@ const testimonials = [
     sourceUrl:
       "https://www.google.com/maps/contrib/105983376958374722355/reviews?hl=en-US",
   },
+  {
+    quote:
+      "Beyond pleased with the results from our recent exterior cleanin. Customer service was top notch. We will continue to book in the future.",
+    name: "Preston Ross",
+    location: "Google review · 2 months ago",
+    sourceUrl:
+      "https://www.google.com/maps/contrib/115391577312091898272/reviews?hl=en-US",
+  },
 ];
 
 const faqs = [
