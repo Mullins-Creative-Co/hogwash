@@ -71,21 +71,32 @@ const results = [
 const testimonials = [
   {
     quote:
-      "My driveway looked brand new. Showed up on time, worked fast, and left the place spotless. Couldn't be happier.",
-    name: "Sarah M.",
-    location: "Homeowner",
+      "Shawn did a top-quality job restoring our deck and detailing the camper. The container turned out looking like new. Above and beyond a 5-star experience.",
+    name: "Craig Grossman",
+    location: "Google review · 1 month ago",
+    sourceUrl:
+      "https://www.google.com/maps/contrib/104249777077163717087/reviews?hl=en-US",
   },
   {
     quote:
-      "Our deck was gray and slimy and I figured we'd have to replace it. One wash and it looks like new wood again.",
-    name: "Dave R.",
-    location: "Repeat customer",
+      "Shawn did such an amazing job on my house. I recommend him to everyone who wants their home power washed and looking good for spring. Hogwash for the win!!",
+    name: "Jennifer Adams",
+    location: "Google review · 2 months ago",
+    sourceUrl: null,
   },
   {
     quote:
-      "Fair price, great communication, and the results speak for themselves. Already booked him for the house siding next.",
-    name: "Jenna K.",
-    location: "Homeowner",
+      "Shawn did a great job! I highly recommend him for any of your exterior cleaning needs!",
+    name: "Erin Swope",
+    location: "Google review · 2 months ago",
+    sourceUrl: null,
+  },
+  {
+    quote:
+      "The owner is top notch! As reputable as they come, will do an excellent job at an honest rate!!",
+    name: "Tim Hopkins",
+    location: "Google review · 2 months ago",
+    sourceUrl: null,
   },
 ];
 
@@ -295,6 +306,10 @@ export default async function Home() {
           <div className="testimonials__top">
             <p className="eyebrow">What people say</p>
             <h2 id="testimonials-title">Neighbors who&apos;d call again.</h2>
+            <p className="testimonials__rating">
+              <span aria-label="5 out of 5 stars">{"\u2605\u2605\u2605\u2605\u2605"}</span>
+              <strong>5.0</strong> from 19 Google reviews
+            </p>
           </div>
           <ul className="testimonial-grid" aria-label="Customer reviews">
             {testimonials.map((item) => (
@@ -304,7 +319,18 @@ export default async function Home() {
                 </span>
                 <blockquote>{item.quote}</blockquote>
                 <div className="testimonial-card__by">
-                  <span className="testimonial-card__name">{item.name}</span>
+                  {item.sourceUrl ? (
+                    <a
+                      className="testimonial-card__name"
+                      href={item.sourceUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {item.name}
+                    </a>
+                  ) : (
+                    <span className="testimonial-card__name">{item.name}</span>
+                  )}
                   <span className="testimonial-card__loc">{item.location}</span>
                 </div>
               </li>
