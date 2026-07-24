@@ -14,7 +14,7 @@ const services = [
     text: "A gentle exterior wash for siding, trim, soffits, and exterior surfaces that removes dirt, algae, mildew, and organic buildup.",
   },
   {
-    label: "Driveways & concrete",
+    label: "Driveways and Concrete",
     title: "Driveways and concrete",
     text: "Professional surface cleaning for driveways, sidewalks, patios, and other concrete, followed by a thorough rinse for an even finish.",
   },
@@ -24,12 +24,12 @@ const services = [
     text: "Careful cleaning for brick and concrete pavers that lifts weeds, grime, moss, and surface staining while protecting the paver surface.",
   },
   {
-    label: "Decks & fences",
+    label: "Decks and fences",
     title: "Decks and fences",
     text: "Surface-appropriate cleaning for wood and composite decks and fences to remove algae, mildew, dirt, and weathered buildup.",
   },
   {
-    label: "Gutters",
+    label: "Gutter cleaning and brightening",
     title: "Gutter cleaning and brightening",
     text: "Interior debris removal to restore gutter flow, plus exterior brightening to tackle dark streaks, oxidation, and visible grime.",
   },

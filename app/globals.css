@@ -68,6 +68,10 @@ main {
   overflow: hidden;
 }
 
+section[id] {
+  scroll-margin-top: 88px;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
