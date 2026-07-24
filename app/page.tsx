@@ -1,7 +1,11 @@
+import type { Metadata } from "next";
 import HeroSlideshow from "./HeroSlideshow";
 import ImageSlot from "./ImageSlot";
 import QuoteForm from "./QuoteForm";
 import SurfaceTabs from "./SurfaceTabs";
+import { getHogwashHomeContent } from "../lib/workspace-content";
+
+export const dynamic = "force-dynamic";
 
 const phoneDisplay = "562-324-6588";
 const phoneHref = "tel:+15623246588";
@@ -145,7 +149,25 @@ const faqs = [
   },
 ];
 
-export default function Home() {
+export async function generateMetadata(): Promise<Metadata> {
+  const content = await getHogwashHomeContent();
+
+  return {
+    title:
+      content?.metaTitle ||
+      "Hogwash Exterior Cleaning | Pressure Washing & House Washing",
+    description:
+      content?.metaDescription ||
+      "Professional pressure washing for driveways, siding, decks, fences, trailers, and more. Owner-operated, free quotes, and results you can see from the street. Call or text 562-324-6588.",
+  };
+}
+
+export default async function Home() {
+  const workspaceContent = await getHogwashHomeContent();
+  const heroDescription =
+    workspaceContent?.body ||
+    "Hogwash strips away years of dirt, algae, and grime from the surfaces people notice first, using professional equipment and the right pressure for every surface. You'll see the difference from the street.";
+
   return (
     <>
       <a className="skip-link" href="#main-content">
@@ -189,10 +211,7 @@ export default function Home() {
             </p>
             <h1 id="hero-title">Restore. Protect. Impress.</h1>
             <p className="hero-grand__lede">
-              Hogwash strips away years of dirt, algae, and grime from the
-              surfaces people notice first, using professional equipment and the
-              right pressure for every surface. You&apos;ll see the difference
-              from the street.
+              {heroDescription}
             </p>
             <div className="hero__actions hero__actions--center">
               <a className="button button--dark" href={phoneHref}>
