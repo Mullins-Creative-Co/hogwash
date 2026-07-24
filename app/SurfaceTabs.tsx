@@ -1,56 +1,93 @@
 "use client";
 
-import { useState } from "react";
+import { KeyboardEvent, useRef, useState } from "react";
 
-const surfaces = [
+const services = [
   {
-    label: "Concrete",
-    title: "Driveways, sidewalks & patios",
-    text: "Surface cleaning lifts years of buildup out of concrete, evenly and edge to edge, with no wand stripes. Oil spots, algae shadows, and tire marks don't stand a chance.",
+    label: "Roof washing",
+    title: "Roof washing",
+    text: "A low-pressure soft wash that treats algae, moss, lichen, and dark streaks without the damage high pressure can cause to shingles.",
   },
   {
-    label: "Homes",
+    label: "House washing",
     title: "House washing",
-    text: "Gentle, low-pressure washing for siding and trim that removes algae and grime without forcing water where it doesn't belong.",
+    text: "A gentle exterior wash for siding, trim, soffits, and exterior surfaces that removes dirt, algae, mildew, and organic buildup.",
   },
   {
-    label: "Decks",
-    title: "Decks, fences & gazebos",
-    text: "Wood washed back to its real color without chewing up the grain, so it's ready to stain, seal, or just enjoy again.",
+    label: "Driveways and Concrete",
+    title: "Driveways and concrete",
+    text: "Professional surface cleaning for driveways, sidewalks, patios, and other concrete, followed by a thorough rinse for an even finish.",
   },
   {
-    label: "Trailers",
-    title: "RVs, trailers & containers",
-    text: "Campers, rigs, and storage containers cleaned with the right touch for painted metal and fiberglass. No swirl marks, no stripped decals.",
+    label: "Pavers",
+    title: "Pavers",
+    text: "Careful cleaning for brick and concrete pavers that lifts weeds, grime, moss, and surface staining while protecting the paver surface.",
   },
   {
-    label: "Commercial",
-    title: "Storefronts & light commercial",
-    text: "Entrances, walkways, and pads kept clean enough to match the business inside. First impressions start at the curb.",
+    label: "Decks and fences",
+    title: "Decks and fences",
+    text: "Surface-appropriate cleaning for wood and composite decks and fences to remove algae, mildew, dirt, and weathered buildup.",
+  },
+  {
+    label: "Gutter cleaning and brightening",
+    title: "Gutter cleaning and brightening",
+    text: "Interior debris removal to restore gutter flow, plus exterior brightening to tackle dark streaks, oxidation, and visible grime.",
   },
 ];
 
 export default function SurfaceTabs() {
   const [active, setActive] = useState(0);
-  const current = surfaces[active];
+  const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
+  const current = services[active];
+
+  const handleKeys = (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
+    let next = index;
+    if (event.key === "ArrowRight") next = (index + 1) % services.length;
+    if (event.key === "ArrowLeft") next = (index - 1 + services.length) % services.length;
+    if (event.key === "Home") next = 0;
+    if (event.key === "End") next = services.length - 1;
+    if (next === index) return;
+    event.preventDefault();
+    setActive(next);
+    tabRefs.current[next]?.focus();
+  };
 
   return (
     <>
-      <div className="surface-tabs" aria-label="Common cleaning categories">
-        {surfaces.map((surface, index) => (
+      <div
+        className="surface-tabs"
+        role="tablist"
+        aria-label="Exterior cleaning services"
+      >
+        {services.map((service, index) => (
           <button
-            key={surface.label}
+            key={service.label}
+            ref={(element) => {
+              tabRefs.current[index] = element;
+            }}
+            id={`service-tab-${index}`}
             type="button"
-            aria-pressed={index === active}
+            role="tab"
+            aria-selected={index === active}
+            aria-controls="service-panel"
+            tabIndex={index === active ? 0 : -1}
             className={index === active ? "is-active" : undefined}
             onClick={() => setActive(index)}
+            onKeyDown={(event) => handleKeys(event, index)}
           >
-            {surface.label}
+            {service.label}
           </button>
         ))}
       </div>
       <div className="feature-grid">
-        <article className="feature-card feature-card--wide" aria-live="polite">
+        <article
+          className="feature-card feature-card--wide"
+          id="service-panel"
+          key={current.label}
+          role="tabpanel"
+          tabIndex={0}
+          aria-labelledby={`service-tab-${active}`}
+        >
           <h3>{current.title}</h3>
           <p>{current.text}</p>
         </article>

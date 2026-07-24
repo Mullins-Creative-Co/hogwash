@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import HeroSlideshow from "./HeroSlideshow";
 import ImageSlot from "./ImageSlot";
+import MobileNav from "./MobileNav";
 import QuoteForm from "./QuoteForm";
+import ScrollReveal from "./ScrollReveal";
 import SurfaceTabs from "./SurfaceTabs";
 import InteractiveEffects from "./InteractiveEffects";
 import { getHogwashHomeContent } from "../lib/workspace-content";
@@ -16,39 +18,6 @@ const facebookEmbedUrl = `https://www.facebook.com/plugins/page.php?href=${encod
 )}&tabs=timeline&width=500&height=620&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true`;
 
   const trustChips = ["Owner-operated", "Free quotes", "Satisfaction guaranteed"];
-
-const services = [
-  {
-    name: "Roof washing",
-    description:
-      "A low-pressure soft wash that treats algae, moss, lichen, and dark streaks without the damage high pressure can cause to shingles.",
-  },
-  {
-    name: "House washing",
-    description:
-      "A gentle exterior wash for siding, trim, soffits, and exterior surfaces that removes dirt, algae, mildew, and organic buildup.",
-  },
-  {
-    name: "Driveways and Concrete",
-    description:
-      "Professional surface cleaning for driveways, sidewalks, patios, and other concrete, followed by a thorough rinse for an even finish.",
-  },
-  {
-    name: "Pavers",
-    description:
-      "Careful cleaning for brick and concrete pavers that lifts weeds, grime, moss, and surface staining while protecting the paver surface.",
-  },
-  {
-    name: "Decks and fences",
-    description:
-      "Surface-appropriate cleaning for wood and composite decks and fences to remove algae, mildew, dirt, and weathered buildup.",
-  },
-  {
-    name: "Gutter cleaning and brightening",
-    description:
-      "Interior debris removal to restore gutter flow, plus exterior brightening to tackle dark streaks, oxidation, and visible grime.",
-  },
-];
 
 const steps = [
   ["01", "Reach out", "Call, text, or send the form. Share a couple details about what needs cleaning."],
@@ -83,19 +52,19 @@ const results = [
     caption: "Grimy door and apron cleaned up sharp on a pole barn.",
   },
   {
-    src: "/hogwash/Updates%207-24/1.jpg",
+    src: "/hogwash/updates-2026-07-24/1.jpg",
     tag: "Roof washing",
     alt: "Before and after of dark roof shingles restored with a professional roof wash",
     caption: "Dark organic buildup treated to restore a cleaner, brighter roof.",
   },
   {
-    src: "/hogwash/Updates%207-24/2.jpg",
+    src: "/hogwash/updates-2026-07-24/2.jpg",
     tag: "House washing",
     alt: "Before and after of algae-covered yellow siding restored with a house wash",
     caption: "Heavy algae and grime removed from siding without harsh pressure.",
   },
   {
-    src: "/hogwash/Updates%207-24/3.jpg",
+    src: "/hogwash/updates-2026-07-24/3.jpg",
     tag: "Pavers",
     alt: "Before and after of a brick paver driveway cleaned of weeds and grime",
     caption: "Weeds and buildup cleared to bring the paver pattern back to life.",
@@ -105,21 +74,48 @@ const results = [
 const testimonials = [
   {
     quote:
-      "My driveway looked brand new. Showed up on time, worked fast, and left the place spotless. Couldn't be happier.",
-    name: "Sarah M.",
-    location: "Homeowner",
+      "Shawn did a top-quality job restoring our deck and detailing the camper. The container turned out looking like new. Above and beyond a 5-star experience.",
+    name: "Craig Grossman",
+    location: "Google review · 1 month ago",
+    sourceUrl:
+      "https://www.google.com/maps/contrib/104249777077163717087/reviews?hl=en-US",
   },
   {
     quote:
-      "Our deck was gray and slimy and I figured we'd have to replace it. One wash and it looks like new wood again.",
-    name: "Dave R.",
-    location: "Repeat customer",
+      "Shawn did such an amazing job on my house. I recommend him to everyone who wants their home power washed and looking good for spring. Hogwash for the win!!",
+    name: "Jennifer Adams",
+    location: "Google review · 2 months ago",
+    sourceUrl: null,
   },
   {
     quote:
-      "Fair price, great communication, and the results speak for themselves. Already booked him for the house siding next.",
-    name: "Jenna K.",
-    location: "Homeowner",
+      "Shawn did a great job! I highly recommend him for any of your exterior cleaning needs!",
+    name: "Erin Swope",
+    location: "Google review · 2 months ago",
+    sourceUrl: null,
+  },
+  {
+    quote:
+      "The owner is top notch! As reputable as they come, will do an excellent job at an honest rate!!",
+    name: "Tim Hopkins",
+    location: "Google review · 2 months ago",
+    sourceUrl: null,
+  },
+  {
+    quote:
+      "Couldn’t be happier! Hogwash took care of years of stains, and made our pool deck and gazebo look new again. 10 out 10!",
+    name: "Doug Short",
+    location: "Google review · 1 month ago",
+    sourceUrl:
+      "https://www.google.com/maps/contrib/105983376958374722355/reviews?hl=en-US",
+  },
+  {
+    quote:
+      "Beyond pleased with the results from our recent exterior cleanin. Customer service was top notch. We will continue to book in the future.",
+    name: "Preston Ross",
+    location: "Google review · 2 months ago",
+    sourceUrl:
+      "https://www.google.com/maps/contrib/115391577312091898272/reviews?hl=en-US",
   },
 ];
 
@@ -171,6 +167,7 @@ export default async function Home() {
 
   return (
     <>
+      <ScrollReveal />
       <a className="skip-link" href="#main-content">
         Skip to main content
       </a>
@@ -200,6 +197,7 @@ export default async function Home() {
           <a className="button button--dark button--sm" href="#quote" data-quote-trigger>
             Free quote
           </a>
+          <MobileNav />
         </div>
       </header>
 
@@ -285,42 +283,18 @@ export default async function Home() {
             label="Full-width photo"
           />
           <div className="image-band__statement">
-            <p>A cleaner driveway. A brighter deck. A property that looks looked after.</p>
+            <p>A cleaner driveway. A brighter deck. A property you&apos;re proud to come home to.</p>
           </div>
         </section>
 
-        <section className="services" id="services" aria-labelledby="services-title">
-          <div className="services__heading">
-            <div>
-              <p className="eyebrow">Services</p>
-              <h2 id="services-title">The clean-up list.</h2>
-            </div>
-            <p>
-              Residential and light commercial washing for every surface that
-              takes a beating from weather, algae, and everyday traffic.
-            </p>
-          </div>
-          <ul className="service-grid" aria-label="Exterior cleaning services">
-            {services.map((service) => (
-              <li key={service.name}>
-                <details className="service-card">
-                  <summary>
-                    <span className="service-card__label">{service.name}</span>
-                    <span className="service-card__arrow" aria-hidden="true">
-                      +
-                    </span>
-                  </summary>
-                  <p>{service.description}</p>
-                </details>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <section className="surface-fit" aria-labelledby="surface-fit-title">
+        <section className="surface-fit" id="services" aria-labelledby="surface-fit-title">
           <div className="surface-fit__top">
-            <p className="eyebrow">The right pressure for every surface</p>
-            <h2 id="surface-fit-title">Power where it helps. Care where it counts.</h2>
+            <p className="eyebrow">Services</p>
+            <h2 id="surface-fit-title">The clean-up list.</h2>
+            <p>
+              Residential and light commercial washing with the right method for
+              every surface. Select a service to see what&apos;s included.
+            </p>
           </div>
           <SurfaceTabs />
           <dl className="stats-band" aria-label="Hogwash service highlights">
@@ -353,6 +327,10 @@ export default async function Home() {
           <div className="testimonials__top">
             <p className="eyebrow">What people say</p>
             <h2 id="testimonials-title">Neighbors who&apos;d call again.</h2>
+            <p className="testimonials__rating">
+              <span aria-label="5 out of 5 stars">{"\u2605\u2605\u2605\u2605\u2605"}</span>
+              <strong>5.0</strong> from 19 Google reviews
+            </p>
           </div>
           <ul className="testimonial-grid" aria-label="Customer reviews">
             {testimonials.map((item) => (
@@ -362,7 +340,18 @@ export default async function Home() {
                 </span>
                 <blockquote>{item.quote}</blockquote>
                 <div className="testimonial-card__by">
-                  <span className="testimonial-card__name">{item.name}</span>
+                  {item.sourceUrl ? (
+                    <a
+                      className="testimonial-card__name"
+                      href={item.sourceUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {item.name}
+                    </a>
+                  ) : (
+                    <span className="testimonial-card__name">{item.name}</span>
+                  )}
                   <span className="testimonial-card__loc">{item.location}</span>
                 </div>
               </li>
@@ -427,11 +416,18 @@ export default async function Home() {
               style={{ border: "none", overflow: "hidden" }}
               scrolling="no"
               allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+              loading="lazy"
             />
           </div>
         </section>
       </main>
       <InteractiveEffects />
+
+      <div className="mobile-action-bar" aria-label="Quick quote actions">
+        <a href={phoneHref}>Call</a>
+        <a href="sms:+15623246588">Text</a>
+        <a href="#quote">Online quote</a>
+      </div>
 
       <footer className="footer">
         <div className="footer__brand">

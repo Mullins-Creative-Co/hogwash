@@ -59,6 +59,8 @@ export default function ImageSlot({
           src={src || "/placeholder.svg"}
           alt={alt}
           loading={priority ? "eager" : "lazy"}
+          decoding="async"
+          fetchPriority={priority ? "high" : "auto"}
           onError={() => setFailed(true)}
         />
       )}

@@ -41,10 +41,12 @@ export default function QuoteForm() {
           <option value="" disabled>
             What needs cleaning?
           </option>
-          <option>Driveway or sidewalk</option>
-          <option>House wash</option>
-          <option>Deck or fence</option>
-          <option>Container, RV, or trailer</option>
+          <option>Roof washing</option>
+          <option>House washing</option>
+          <option>Driveways and concrete</option>
+          <option>Pavers</option>
+          <option>Decks and fences</option>
+          <option>Gutter cleaning and brightening</option>
           <option>Other exterior cleaning</option>
         </select>
       </label>
