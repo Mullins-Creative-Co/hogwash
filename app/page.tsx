@@ -257,8 +257,8 @@ export default async function Home() {
 
         <section className="surface-fit" id="services" aria-labelledby="surface-fit-title">
           <div className="surface-fit__top">
-            <p className="eyebrow">Services · the clean-up list</p>
-            <h2 id="surface-fit-title">Power where it helps. Care where it counts.</h2>
+            <p className="eyebrow">Services</p>
+            <h2 id="surface-fit-title">The clean-up list.</h2>
             <p>
               Residential and light commercial washing with the right method for
               every surface. Select a service to see what&apos;s included.
