@@ -98,6 +98,14 @@ const testimonials = [
     location: "Google review · 2 months ago",
     sourceUrl: null,
   },
+  {
+    quote:
+      "Couldn’t be happier! Hogwash took care of years of stains, and made our pool deck and gazebo look new again. 10 out 10!",
+    name: "Doug Short",
+    location: "Google review · 1 month ago",
+    sourceUrl:
+      "https://www.google.com/maps/contrib/105983376958374722355/reviews?hl=en-US",
+  },
 ];
 
 const faqs = [
