@@ -2,50 +2,55 @@
 
 import { useState } from "react";
 
-const surfaces = [
+const services = [
   {
-    label: "Concrete",
-    title: "Driveways, sidewalks & patios",
-    text: "Surface cleaning lifts years of buildup out of concrete, evenly and edge to edge, with no wand stripes. Oil spots, algae shadows, and tire marks don't stand a chance.",
+    label: "Roof washing",
+    title: "Roof washing",
+    text: "A low-pressure soft wash that treats algae, moss, lichen, and dark streaks without the damage high pressure can cause to shingles.",
   },
   {
-    label: "Homes",
+    label: "House washing",
     title: "House washing",
-    text: "Gentle, low-pressure washing for siding and trim that removes algae and grime without forcing water where it doesn't belong.",
+    text: "A gentle exterior wash for siding, trim, soffits, and exterior surfaces that removes dirt, algae, mildew, and organic buildup.",
   },
   {
-    label: "Decks",
-    title: "Decks, fences & gazebos",
-    text: "Wood washed back to its real color without chewing up the grain, so it's ready to stain, seal, or just enjoy again.",
+    label: "Driveways & concrete",
+    title: "Driveways and concrete",
+    text: "Professional surface cleaning for driveways, sidewalks, patios, and other concrete, followed by a thorough rinse for an even finish.",
   },
   {
-    label: "Trailers",
-    title: "RVs, trailers & containers",
-    text: "Campers, rigs, and storage containers cleaned with the right touch for painted metal and fiberglass. No swirl marks, no stripped decals.",
+    label: "Pavers",
+    title: "Pavers",
+    text: "Careful cleaning for brick and concrete pavers that lifts weeds, grime, moss, and surface staining while protecting the paver surface.",
   },
   {
-    label: "Commercial",
-    title: "Storefronts & light commercial",
-    text: "Entrances, walkways, and pads kept clean enough to match the business inside. First impressions start at the curb.",
+    label: "Decks & fences",
+    title: "Decks and fences",
+    text: "Surface-appropriate cleaning for wood and composite decks and fences to remove algae, mildew, dirt, and weathered buildup.",
+  },
+  {
+    label: "Gutters",
+    title: "Gutter cleaning and brightening",
+    text: "Interior debris removal to restore gutter flow, plus exterior brightening to tackle dark streaks, oxidation, and visible grime.",
   },
 ];
 
 export default function SurfaceTabs() {
   const [active, setActive] = useState(0);
-  const current = surfaces[active];
+  const current = services[active];
 
   return (
     <>
-      <div className="surface-tabs" aria-label="Common cleaning categories">
-        {surfaces.map((surface, index) => (
+      <div className="surface-tabs" aria-label="Exterior cleaning services">
+        {services.map((service, index) => (
           <button
-            key={surface.label}
+            key={service.label}
             type="button"
             aria-pressed={index === active}
             className={index === active ? "is-active" : undefined}
             onClick={() => setActive(index)}
           >
-            {surface.label}
+            {service.label}
           </button>
         ))}
       </div>

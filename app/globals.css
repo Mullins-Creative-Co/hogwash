@@ -24,6 +24,8 @@ html,
 body {
   padding: 0;
   margin: 0;
+  max-width: 100%;
+  overflow-x: hidden;
   font-family: var(--font-sans), system-ui, sans-serif;
 }
 
@@ -541,7 +543,6 @@ h3 {
 /* Section shell ------------------------------------------------------- */
 
 .intro,
-.services,
 .surface-fit,
 .process,
 .quote,
@@ -862,112 +863,20 @@ h3 {
   text-shadow: 0 10px 40px rgba(8, 16, 26, 0.5);
 }
 
-/* Services ------------------------------------------------------------ */
-
-.services__heading {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(260px, 460px);
-  gap: 30px;
-  align-items: end;
-  margin-bottom: clamp(32px, 5vw, 64px);
-}
-
-.services__heading p {
-  max-width: 460px;
-  margin-bottom: 0;
-  color: var(--quiet);
-  font-size: clamp(1.02rem, 1.2vw, 1.2rem);
-  line-height: 1.6;
-}
-
-.service-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
-.service-card {
-  min-height: 130px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--surface);
-  box-shadow: var(--shadow-sm);
-  overflow: hidden;
-  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
-}
-
-.service-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(21, 115, 212, 0.4);
-  box-shadow: var(--shadow-md);
-}
-
-.service-card summary {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  min-height: 128px;
-  padding: 22px;
-  cursor: pointer;
-  list-style: none;
-}
-
-.service-card summary::-webkit-details-marker {
-  display: none;
-}
-
-.service-card summary:focus-visible {
-  outline: 3px solid rgba(21, 115, 212, 0.45);
-  outline-offset: -3px;
-}
-
-.service-card p {
-  margin: -10px 22px 24px;
-  color: var(--quiet);
-  line-height: 1.6;
-}
-
-.service-card__label {
-  font-family: var(--font-display);
-  font-size: clamp(1.1rem, 1.6vw, 1.5rem);
-  font-weight: 600;
-  letter-spacing: -0.01em;
-}
-
-.service-card__arrow {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 34px;
-  height: 34px;
-  flex: none;
-  border-radius: 50%;
-  background: var(--blue-tint);
-  color: var(--blue-dark);
-  font-size: 1.05rem;
-  transition: background 180ms ease, color 180ms ease, transform 180ms ease;
-}
-
-.service-card:hover .service-card__arrow,
-.service-card[open] .service-card__arrow {
-  background: var(--blue);
-  color: var(--surface);
-}
-
-.service-card[open] .service-card__arrow {
-  transform: rotate(45deg);
-}
-
 /* Surface fit --------------------------------------------------------- */
 
 .surface-fit__top {
   display: grid;
   gap: 16px;
   max-width: 900px;
+}
+
+.surface-fit__top > p:last-child {
+  max-width: 680px;
+  margin: 0;
+  color: var(--quiet);
+  font-size: clamp(1.02rem, 1.2vw, 1.2rem);
+  line-height: 1.6;
 }
 
 .surface-tabs {
@@ -1346,7 +1255,6 @@ h3 {
   }
 
   .intro,
-  .services__heading,
   .quote,
   .facebook-section {
     grid-template-columns: 1fr;
@@ -1354,10 +1262,6 @@ h3 {
 
   .intro__photo {
     order: -1;
-  }
-
-  .service-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .process-grid {
@@ -1390,6 +1294,7 @@ h3 {
 
 @media (max-width: 620px) {
   .site-header {
+    width: 100%;
     gap: 12px;
     padding: 12px 16px;
   }
@@ -1402,22 +1307,44 @@ h3 {
     display: none;
   }
 
-  .service-grid,
   .process-grid,
   .quote-form {
     grid-template-columns: 1fr;
   }
 
-  .service-card {
-    min-height: 96px;
-  }
-
-  .service-card summary {
-    min-height: 94px;
-  }
-
   .hero-grand {
     min-height: 570px;
+  }
+
+  .hero-grand__content {
+    min-width: 0;
+    padding-inline: 20px;
+  }
+
+  .hero-grand .eyebrow--light {
+    width: 100%;
+    justify-content: center;
+    white-space: normal;
+  }
+
+  .hero-grand h1,
+  .hero-grand__lede {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hero__actions {
+    width: 100%;
+  }
+
+  .hero__actions .button {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .trust-chips {
+    width: 100%;
+    gap: 10px 16px;
   }
 
   .hero-video {

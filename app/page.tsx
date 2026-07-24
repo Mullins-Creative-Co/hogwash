@@ -16,39 +16,6 @@ const facebookEmbedUrl = `https://www.facebook.com/plugins/page.php?href=${encod
 
   const trustChips = ["Owner-operated", "Free quotes", "Satisfaction guaranteed"];
 
-const services = [
-  {
-    name: "Roof washing",
-    description:
-      "A low-pressure soft wash that treats algae, moss, lichen, and dark streaks without the damage high pressure can cause to shingles.",
-  },
-  {
-    name: "House washing",
-    description:
-      "A gentle exterior wash for siding, trim, soffits, and exterior surfaces that removes dirt, algae, mildew, and organic buildup.",
-  },
-  {
-    name: "Driveways and Concrete",
-    description:
-      "Professional surface cleaning for driveways, sidewalks, patios, and other concrete, followed by a thorough rinse for an even finish.",
-  },
-  {
-    name: "Pavers",
-    description:
-      "Careful cleaning for brick and concrete pavers that lifts weeds, grime, moss, and surface staining while protecting the paver surface.",
-  },
-  {
-    name: "Decks and fences",
-    description:
-      "Surface-appropriate cleaning for wood and composite decks and fences to remove algae, mildew, dirt, and weathered buildup.",
-  },
-  {
-    name: "Gutter cleaning and brightening",
-    description:
-      "Interior debris removal to restore gutter flow, plus exterior brightening to tackle dark streaks, oxidation, and visible grime.",
-  },
-];
-
 const steps = [
   ["01", "Reach out", "Call, text, or send the form. Share a couple details about what needs cleaning."],
   ["02", "Quick quote", "We price most jobs right over the phone, or after a fast look. No pressure, ever."],
@@ -288,38 +255,14 @@ export default async function Home() {
           </div>
         </section>
 
-        <section className="services" id="services" aria-labelledby="services-title">
-          <div className="services__heading">
-            <div>
-              <p className="eyebrow">Services</p>
-              <h2 id="services-title">The clean-up list.</h2>
-            </div>
-            <p>
-              Residential and light commercial washing for every surface that
-              takes a beating from weather, algae, and everyday traffic.
-            </p>
-          </div>
-          <ul className="service-grid" aria-label="Exterior cleaning services">
-            {services.map((service) => (
-              <li key={service.name}>
-                <details className="service-card">
-                  <summary>
-                    <span className="service-card__label">{service.name}</span>
-                    <span className="service-card__arrow" aria-hidden="true">
-                      +
-                    </span>
-                  </summary>
-                  <p>{service.description}</p>
-                </details>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <section className="surface-fit" aria-labelledby="surface-fit-title">
+        <section className="surface-fit" id="services" aria-labelledby="surface-fit-title">
           <div className="surface-fit__top">
-            <p className="eyebrow">The right pressure for every surface</p>
+            <p className="eyebrow">Services · the clean-up list</p>
             <h2 id="surface-fit-title">Power where it helps. Care where it counts.</h2>
+            <p>
+              Residential and light commercial washing with the right method for
+              every surface. Select a service to see what&apos;s included.
+            </p>
           </div>
           <SurfaceTabs />
           <dl className="stats-band" aria-label="Hogwash service highlights">
