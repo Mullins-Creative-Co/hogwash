@@ -3,6 +3,7 @@ import HeroSlideshow from "./HeroSlideshow";
 import ImageSlot from "./ImageSlot";
 import QuoteForm from "./QuoteForm";
 import SurfaceTabs from "./SurfaceTabs";
+import InteractiveEffects from "./InteractiveEffects";
 import { getHogwashHomeContent } from "../lib/workspace-content";
 
 export const dynamic = "force-dynamic";
@@ -196,7 +197,7 @@ export default async function Home() {
           <a className="call-link" href={phoneHref} aria-label={`Call or text Hogwash at ${phoneDisplay}`}>
             {phoneDisplay}
           </a>
-          <a className="button button--dark button--sm" href="#quote">
+          <a className="button button--dark button--sm" href="#quote" data-quote-trigger>
             Free quote
           </a>
         </div>
@@ -217,7 +218,7 @@ export default async function Home() {
               <a className="button button--dark" href={phoneHref}>
                 Call or text for a free quote
               </a>
-              <a className="button button--frost" href="#quote">
+              <a className="button button--frost" href="#quote" data-quote-trigger>
                 Request a quote online
               </a>
             </div>
@@ -430,6 +431,7 @@ export default async function Home() {
           </div>
         </section>
       </main>
+      <InteractiveEffects />
 
       <footer className="footer">
         <div className="footer__brand">
