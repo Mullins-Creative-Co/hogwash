@@ -3,14 +3,35 @@
 import { useState } from "react";
 
 export default function QuoteForm() {
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
+    "idle",
+  );
 
   return (
     <form
       className="quote-form"
-      onSubmit={(event) => {
+      onSubmit={async (event) => {
         event.preventDefault();
-        setSent(true);
+        setStatus("sending");
+
+        try {
+          const response = await fetch("/api/quote", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(
+              Object.fromEntries(new FormData(event.currentTarget).entries()),
+            ),
+          });
+
+          if (!response.ok) {
+            throw new Error("Quote request failed");
+          }
+
+          event.currentTarget.reset();
+          setStatus("sent");
+        } catch {
+          setStatus("error");
+        }
       }}
     >
       <label>
@@ -22,6 +43,15 @@ export default function QuoteForm() {
           autoComplete="name"
           required
           aria-required="true"
+        />
+      </label>
+      <label>
+        Email
+        <input
+          name="email"
+          type="email"
+          placeholder="Your email"
+          autoComplete="email"
         />
       </label>
       <label>
@@ -51,12 +81,14 @@ export default function QuoteForm() {
         </select>
       </label>
       <label>
-        Address or town
+        Address
         <input
           name="area"
           type="text"
-          placeholder="City or neighborhood"
-          autoComplete="address-level2"
+          placeholder="Street address"
+          autoComplete="street-address"
+          required
+          aria-required="true"
         />
       </label>
       <label className="quote-form__wide">
@@ -67,16 +99,31 @@ export default function QuoteForm() {
           aria-describedby="quote-note"
         />
       </label>
-      <button className="button button--dark quote-form__wide" type="submit">
-        Preview quote request
+      <div
+        aria-hidden="true"
+        style={{ position: "absolute", left: "-9999px" }}
+      >
+        <label>
+          Website
+          <input name="website" type="text" tabIndex={-1} autoComplete="off" />
+        </label>
+      </div>
+      <button
+        className="button button--dark quote-form__wide"
+        type="submit"
+        disabled={status === "sending"}
+      >
+        {status === "sending" ? "Sending…" : "Request a quote"}
       </button>
       <p className="form-note quote-form__wide" id="quote-note">
-        Required fields: name, phone, and service. This preview form does not send yet.
+        Required fields: name, phone, service, and address.
       </p>
       <p className="form-note quote-form__wide" role="status" aria-live="polite">
-        {sent
-          ? "Preview received. For a real quote today, call or text the number on this page."
-          : ""}
+        {status === "sent"
+          ? "Thanks! Your quote request was sent. We’ll be in touch soon."
+          : status === "error"
+            ? "We couldn’t send your request. Please call or text the number on this page."
+            : ""}
       </p>
     </form>
   );
