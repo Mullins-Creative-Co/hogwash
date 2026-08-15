@@ -17,7 +17,7 @@ const facebookEmbedUrl = `https://www.facebook.com/plugins/page.php?href=${encod
   facebookUrl
 )}&tabs=timeline&width=500&height=620&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true`;
 
-  const trustChips = ["Owner-operated", "Free quotes", "Satisfaction guaranteed"];
+  const trustChips = ["Owner-operated", "Free quotes", "Fully insured"];
 
 const steps = [
   ["01", "Reach out", "Call, text, or send the form. Share a couple details about what needs cleaning."],
@@ -142,7 +142,7 @@ const faqs = [
   },
   {
     q: "What areas do you serve?",
-    a: "We serve local homes and businesses throughout the surrounding area. Not sure if you're in range? Just call or text and we'll let you know.",
+    a: "We serve homes and businesses throughout the Dayton area and Southwest Ohio. Not sure if you're in range? Call or text and we'll be happy to confirm service availability.",
   },
 ];
 
@@ -152,10 +152,13 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title:
       content?.metaTitle ||
-      "Hogwash Exterior Cleaning | Pressure Washing & House Washing",
+      "Pressure Washing Dayton, OH | Hogwash Exterior Cleaning",
     description:
       content?.metaDescription ||
-      "Professional pressure washing for driveways, siding, decks, fences, trailers, and more. Owner-operated, free quotes, and results you can see from the street. Call or text 562-324-6588.",
+      "Fully insured pressure washing and exterior cleaning serving Dayton and Southwest Ohio. House washing, driveways, roofs, decks, and more. Free quotes.",
+    alternates: {
+      canonical: "/",
+    },
   };
 }
 
@@ -182,6 +185,7 @@ export default async function Home() {
             label="Logo"
             rounded
             priority
+            sizes="44px"
           />
           <span>Hogwash</span>
         </a>
@@ -208,7 +212,7 @@ export default async function Home() {
           <HeroSlideshow />
           <div className="hero-grand__content">
             <p className="eyebrow eyebrow--light">
-              Professional exterior cleaning for homes, driveways, decks &amp; rigs
+              Serving Dayton and Southwest Ohio
             </p>
             <h1 id="hero-title">{heroTitle}</h1>
             <p className="hero-grand__lede">
@@ -242,6 +246,7 @@ export default async function Home() {
             alt="Surface cleaner attachment lifting years of grime off a concrete driveway"
             label="Action photo"
             rounded
+            sizes="(max-width: 760px) calc(100vw - 40px), 480px"
           />
         </section>
 
@@ -259,6 +264,7 @@ export default async function Home() {
                   src={item.src}
                   alt={item.alt}
                   label="Before / after"
+                  sizes="(max-width: 639px) calc(100vw - 40px), (max-width: 999px) 50vw, 33vw"
                 />
                 <div className="result-card__body">
                   <span className="result-card__tag">{item.tag}</span>
@@ -275,6 +281,7 @@ export default async function Home() {
             src="/hogwash/driveway2.jpg"
             alt=""
             label="Full-width photo"
+            sizes="100vw"
           />
           <div className="image-band__statement">
             <p>{home?.brandStatement || "A cleaner driveway. A brighter deck. A property you're proud to come home to."}</p>
@@ -421,10 +428,11 @@ export default async function Home() {
             alt="Hogwash logo"
             label="Logo"
             rounded
+            sizes="56px"
           />
           <div>
             <p className="footer__name">Hogwash Exterior Cleaning</p>
-            <p className="footer__tag">Serving local homes and businesses.</p>
+            <p className="footer__tag">Serving homes and businesses across Dayton and Southwest Ohio.</p>
           </div>
         </div>
         <nav className="footer__nav" aria-label="Footer navigation">

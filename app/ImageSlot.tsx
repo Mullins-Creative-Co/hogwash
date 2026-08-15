@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 type ImageSlotProps = {
   src: string;
@@ -9,6 +10,7 @@ type ImageSlotProps = {
   className?: string;
   priority?: boolean;
   rounded?: boolean;
+  sizes?: string;
 };
 
 /**
@@ -23,6 +25,7 @@ export default function ImageSlot({
   className,
   priority,
   rounded,
+  sizes = "(max-width: 760px) calc(100vw - 40px), 33vw",
 }: ImageSlotProps) {
   const [failed, setFailed] = useState(false);
 
@@ -54,13 +57,13 @@ export default function ImageSlot({
           <span className="img-slot__path">{src}</span>
         </div>
       ) : (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
+        <Image
           src={src || "/placeholder.svg"}
           alt={alt}
-          loading={priority ? "eager" : "lazy"}
-          decoding="async"
-          fetchPriority={priority ? "high" : "auto"}
+          fill
+          sizes={sizes}
+          quality={75}
+          priority={priority}
           onError={() => setFailed(true)}
         />
       )}

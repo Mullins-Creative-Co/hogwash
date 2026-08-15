@@ -21,6 +21,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: page.metaTitle || `${page.title} | Hogwash Exterior Cleaning`,
     description: page.metaDescription || page.body.slice(0, 160),
+    alternates: {
+      canonical: `/${slug}`,
+    },
+    openGraph: {
+      type: "website",
+      url: `/${slug}`,
+      title: page.metaTitle || `${page.title} | Hogwash Exterior Cleaning`,
+      description: page.metaDescription || page.body.slice(0, 160),
+    },
   };
 }
 
@@ -40,6 +49,7 @@ export default async function PublishedContentPage({ params }: PageProps) {
             label="Logo"
             rounded
             priority
+            sizes="44px"
           />
           <span>Hogwash</span>
         </a>
@@ -77,10 +87,11 @@ export default async function PublishedContentPage({ params }: PageProps) {
             alt="Hogwash logo"
             label="Logo"
             rounded
+            sizes="56px"
           />
           <div>
             <p className="footer__name">Hogwash Exterior Cleaning</p>
-            <p className="footer__tag">Serving local homes and businesses.</p>
+            <p className="footer__tag">Serving homes and businesses across Dayton and Southwest Ohio.</p>
           </div>
         </div>
         <a className="footer__phone" href={phoneHref}>{phoneDisplay}</a>

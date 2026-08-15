@@ -49,6 +49,11 @@ export async function getHogwashPageContent(slug: string) {
   return site?.pages.find((page) => page.slug === normalizedSlug) ?? null;
 }
 
+export async function getHogwashPublishedPages() {
+  const site = await getPublishedHogwashSite();
+  return site?.pages ?? [];
+}
+
 async function getPublishedHogwashSite() {
   try {
     const response = await fetch(contentUrl, { cache: "no-store" });

@@ -843,12 +843,12 @@ body.modal-open {
 
 .img-slot.result-card__photo {
   height: auto;
-  aspect-ratio: auto;
+  aspect-ratio: 3 / 2;
   border-radius: 0;
 }
 
 .result-card__photo img {
-  height: auto;
+  height: 100%;
 }
 
 .result-card__body {
@@ -1492,7 +1492,7 @@ body.modal-open {
 }
 
 .footer__phone {
-  color: var(--blue);
+  color: var(--blue-dark);
   font-weight: 700;
   font-size: 1rem;
 }

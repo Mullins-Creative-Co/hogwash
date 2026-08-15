@@ -6,7 +6,9 @@ export default function HeroSlideshow() {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const media = window.matchMedia(
+      "(prefers-reduced-motion: reduce), (max-width: 620px)",
+    );
 
     const syncPlayback = () => {
       if (!videoRef.current) return;
@@ -28,12 +30,11 @@ export default function HeroSlideshow() {
       <video
         ref={videoRef}
         className="hero-video"
-        autoPlay
         muted
         loop
         playsInline
-        preload="metadata"
-        poster="/hogwash/updates-2026-07-24/2.jpg"
+        preload="none"
+        poster="/hogwash/updates-2026-07-24/hero-poster.webp"
       >
         <source src="/hogwash/updates-2026-07-24/hero-video.mp4" type="video/mp4" />
       </video>
