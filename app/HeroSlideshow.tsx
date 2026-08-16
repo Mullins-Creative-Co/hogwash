@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 
-export default function HeroSlideshow() {
+export default function HeroSlideshow({ videoUrl, posterUrl }: { videoUrl?: string; posterUrl?: string }) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -34,9 +34,9 @@ export default function HeroSlideshow() {
         loop
         playsInline
         preload="none"
-        poster="/hogwash/updates-2026-07-24/hero-poster.webp"
+        poster={posterUrl || "/hogwash/updates-2026-07-24/hero-poster.webp"}
       >
-        <source src="/hogwash/updates-2026-07-24/hero-video.mp4" type="video/mp4" />
+        <source src={videoUrl || "/hogwash/updates-2026-07-24/hero-video.mp4"} type={videoUrl?.toLowerCase().includes(".webm") ? "video/webm" : "video/mp4"} />
       </video>
     </div>
   );

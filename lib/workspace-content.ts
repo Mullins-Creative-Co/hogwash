@@ -10,11 +10,22 @@ export type PublishedPage = {
   updatedAt: string;
   homeSections?: {
     heroEyebrow?: string;
+    heroSecondaryHeading?: string;
     heroPrimaryButton?: string;
     heroSecondaryButton?: string;
+    heroTags?: string;
+    heroVideoUrl?: string;
+    heroPosterUrl?: string;
     heroTrustOne?: string;
     heroTrustTwo?: string;
     heroTrustThree?: string;
+    menuServices?: string;
+    menuResults?: string;
+    menuReviews?: string;
+    menuFaq?: string;
+    menuQuote?: string;
+    menuQuoteButton?: string;
+    mobileCallButton?: string;
     introEyebrow?: string;
     introHeading?: string;
     introBody?: string;

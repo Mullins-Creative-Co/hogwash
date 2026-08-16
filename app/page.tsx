@@ -163,10 +163,14 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function Home() {
   const workspaceContent = await getHogwashHomeContent();
   const home = workspaceContent?.homeSections;
-  const trustChips = [
-    home?.heroTrustOne || "Owner-operated",
-    home?.heroTrustTwo || "Free quotes",
-    home?.heroTrustThree || "Fully insured",
+  const legacyTrustChips = [home?.heroTrustOne || "Owner-operated", home?.heroTrustTwo || "Free quotes", home?.heroTrustThree || "Fully insured"];
+  const trustChips = home?.heroTags?.split("\n").map((tag) => tag.trim()).filter(Boolean) || legacyTrustChips;
+  const menuLinks: Array<[string, string]> = [
+    [home?.menuServices || "Services", "#services"],
+    [home?.menuResults || "Results", "#results"],
+    [home?.menuReviews || "Reviews", "#reviews"],
+    [home?.menuFaq || "FAQ", "#faq"],
+    [home?.menuQuote || "Quote", "#quote"],
   ];
   const heroTitle = workspaceContent?.header || "Restore. Protect. Impress.";
   const heroDescription =
@@ -193,31 +197,28 @@ export default async function Home() {
           <span>Hogwash</span>
         </a>
         <nav className="nav" aria-label="Primary navigation">
-          <a href="#services">Services</a>
-          <a href="#results">Results</a>
-          <a href="#reviews">Reviews</a>
-          <a href="#faq">FAQ</a>
-          <a href="#quote">Quote</a>
+          {menuLinks.map(([label, href]) => <a href={href} key={href}>{label}</a>)}
         </nav>
         <div className="site-header__actions">
           <a className="call-link" href={phoneHref} aria-label={`Call or text Hogwash at ${phoneDisplay}`}>
             {phoneDisplay}
           </a>
           <a className="button button--dark button--sm" href="#quote" data-quote-trigger>
-            Free quote
+            {home?.menuQuoteButton || "Free quote"}
           </a>
-          <MobileNav />
+          <MobileNav links={menuLinks} callLabel={home?.mobileCallButton || "Call 562-324-6588"} />
         </div>
       </header>
 
       <main id="main-content" tabIndex={-1}>
         <section className="hero-grand" id="top" aria-labelledby="hero-title">
-          <HeroSlideshow />
+          <HeroSlideshow videoUrl={home?.heroVideoUrl} posterUrl={home?.heroPosterUrl} />
           <div className="hero-grand__content">
             <p className="eyebrow eyebrow--light">
               {home?.heroEyebrow || "Serving the Dayton area"}
             </p>
             <h1 id="hero-title">{heroTitle}</h1>
+            {home?.heroSecondaryHeading ? <h2 className="hero-grand__secondary-heading">{home.heroSecondaryHeading}</h2> : null}
             <p className="hero-grand__lede">
               {heroDescription}
             </p>
@@ -443,11 +444,7 @@ export default async function Home() {
           </div>
         </div>
         <nav className="footer__nav" aria-label="Footer navigation">
-          <a href="#services">Services</a>
-          <a href="#results">Results</a>
-          <a href="#reviews">Reviews</a>
-          <a href="#faq">FAQ</a>
-          <a href="#quote">Quote</a>
+          {menuLinks.map(([label, href]) => <a href={href} key={href}>{label}</a>)}
         </nav>
         <a className="footer__phone" href={phoneHref} aria-label={`Call or text Hogwash at ${phoneDisplay}`}>
           {phoneDisplay}

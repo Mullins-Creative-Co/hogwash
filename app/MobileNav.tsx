@@ -2,15 +2,7 @@
 
 import { useRef } from "react";
 
-const links = [
-  ["Services", "#services"],
-  ["Results", "#results"],
-  ["Reviews", "#reviews"],
-  ["FAQ", "#faq"],
-  ["Quote", "#quote"],
-];
-
-export default function MobileNav() {
+export default function MobileNav({ links, callLabel }: { links: Array<[string, string]>; callLabel: string }) {
   const menuRef = useRef<HTMLDetailsElement>(null);
 
   return (
@@ -31,7 +23,7 @@ export default function MobileNav() {
           </a>
         ))}
         <a className="mobile-nav__phone" href="tel:+15623246588">
-          Call 562-324-6588
+          {callLabel}
         </a>
       </nav>
     </details>
