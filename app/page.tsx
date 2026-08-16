@@ -165,13 +165,18 @@ export default async function Home() {
   const home = workspaceContent?.homeSections;
   const legacyTrustChips = [home?.heroTrustOne || "Owner-operated", home?.heroTrustTwo || "Free quotes", home?.heroTrustThree || "Fully insured"];
   const trustChips = home?.heroTags?.split("\n").map((tag) => tag.trim()).filter(Boolean) || legacyTrustChips;
-  const menuLinks: Array<[string, string]> = [
+  const legacyMenuLinks: Array<[string, string]> = [
     [home?.menuServices || "Services", "#services"],
     [home?.menuResults || "Results", "#results"],
     [home?.menuReviews || "Reviews", "#reviews"],
     [home?.menuFaq || "FAQ", "#faq"],
     [home?.menuQuote || "Quote", "#quote"],
   ];
+  const customMenuLinks = home?.menuItems?.split("\n").flatMap((line): Array<[string, string]> => {
+    const [label, href] = line.split("|").map((part) => part.trim());
+    return label && href ? [[label, href]] : [];
+  });
+  const menuLinks = customMenuLinks?.length ? customMenuLinks : legacyMenuLinks;
   const heroTitle = workspaceContent?.header || "Restore. Protect. Impress.";
   const heroDescription =
     workspaceContent?.body ||

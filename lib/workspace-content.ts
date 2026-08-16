@@ -19,6 +19,7 @@ export type PublishedPage = {
     heroTrustOne?: string;
     heroTrustTwo?: string;
     heroTrustThree?: string;
+    menuItems?: string;
     menuServices?: string;
     menuResults?: string;
     menuReviews?: string;
