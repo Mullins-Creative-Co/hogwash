@@ -17,8 +17,6 @@ const facebookEmbedUrl = `https://www.facebook.com/plugins/page.php?href=${encod
   facebookUrl
 )}&tabs=timeline&width=500&height=620&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true`;
 
-  const trustChips = ["Owner-operated", "Free quotes", "Fully insured"];
-
 const steps = [
   ["01", "Reach out", "Call, text, or send the form. Share a couple details about what needs cleaning."],
   ["02", "Quick quote", "We price most jobs right over the phone, or after a fast look. No pressure, ever."],
@@ -165,6 +163,11 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function Home() {
   const workspaceContent = await getHogwashHomeContent();
   const home = workspaceContent?.homeSections;
+  const trustChips = [
+    home?.heroTrustOne || "Owner-operated",
+    home?.heroTrustTwo || "Free quotes",
+    home?.heroTrustThree || "Fully insured",
+  ];
   const heroTitle = workspaceContent?.header || "Restore. Protect. Impress.";
   const heroDescription =
     workspaceContent?.body ||
@@ -212,7 +215,7 @@ export default async function Home() {
           <HeroSlideshow />
           <div className="hero-grand__content">
             <p className="eyebrow eyebrow--light">
-              Serving the Dayton area
+              {home?.heroEyebrow || "Serving the Dayton area"}
             </p>
             <h1 id="hero-title">{heroTitle}</h1>
             <p className="hero-grand__lede">
@@ -220,10 +223,10 @@ export default async function Home() {
             </p>
             <div className="hero__actions hero__actions--center">
               <a className="button button--dark" href={phoneHref}>
-                Call or text for a free quote
+                {home?.heroPrimaryButton || "Call or text for a free quote"}
               </a>
               <a className="button button--frost" href="#quote" data-quote-trigger>
-                Request a quote online
+                {home?.heroSecondaryButton || "Request a quote online"}
               </a>
             </div>
             <ul className="trust-chips" aria-label="Why homeowners choose Hogwash">
@@ -236,7 +239,7 @@ export default async function Home() {
 
         <section className="intro" aria-labelledby="intro-title">
           <div className="intro__copy">
-            <p className="eyebrow">Local &amp; owner-operated</p>
+            <p className="eyebrow">{home?.introEyebrow || "Local & owner-operated"}</p>
             <h2 id="intro-title">{home?.introHeading || "Grime costs more than a wash does."}</h2>
             <p>{home?.introBody || "Dirt, mold, and algae don't just look bad. Left alone, they slowly break down concrete, wood, and siding. A good wash protects what you've put into your property and saves you from repairs down the road. Take a look at the before and afters below."}</p>
           </div>
@@ -252,7 +255,7 @@ export default async function Home() {
 
         <section className="results" id="results" aria-labelledby="results-title">
           <div className="results__top">
-            <p className="eyebrow">Before &amp; after</p>
+            <p className="eyebrow">{home?.resultsEyebrow || "Before & after"}</p>
             <h2 id="results-title">{home?.resultsHeading || "Real jobs. Real difference."}</h2>
             <p>{home?.resultsBody || "Every one of these is an actual Hogwash job. Same surface, same day, just a whole lot cleaner."}</p>
           </div>
@@ -290,13 +293,17 @@ export default async function Home() {
 
         <section className="surface-fit" id="services" aria-labelledby="surface-fit-title">
           <div className="surface-fit__top">
-            <p className="eyebrow">Services</p>
+            <p className="eyebrow">{home?.servicesEyebrow || "Services"}</p>
             <h2 id="surface-fit-title">{home?.servicesHeading || "The clean-up list."}</h2>
             <p>{home?.servicesBody || "Residential and light commercial washing with the right method for every surface. Select a service to see what's included."}</p>
           </div>
           <SurfaceTabs />
           <dl className="stats-band" aria-label="Hogwash service highlights">
-            {stats.map(([value, label]) => (
+            {[
+              [home?.statOneValue || stats[0][0], home?.statOneLabel || stats[0][1]],
+              [home?.statTwoValue || stats[1][0], home?.statTwoLabel || stats[1][1]],
+              [home?.statThreeValue || stats[2][0], home?.statThreeLabel || stats[2][1]],
+            ].map(([value, label]) => (
               <div key={label}>
                 <dt>{value}</dt>
                 <dd>{label}</dd>
@@ -307,7 +314,7 @@ export default async function Home() {
 
         <section className="process" id="process" aria-labelledby="process-title">
           <div className="process__top">
-            <p className="eyebrow">How it works</p>
+            <p className="eyebrow">{home?.processEyebrow || "How it works"}</p>
             <h2 id="process-title">{home?.processHeading || "Simple from hello to spotless."}</h2>
           </div>
           <ol className="process-grid" aria-label="How Hogwash works">
@@ -323,11 +330,11 @@ export default async function Home() {
 
         <section className="testimonials" id="reviews" aria-labelledby="testimonials-title">
           <div className="testimonials__top">
-            <p className="eyebrow">What people say</p>
+            <p className="eyebrow">{home?.reviewsEyebrow || "What people say"}</p>
             <h2 id="testimonials-title">{home?.reviewsHeading || "Neighbors who'd call again."}</h2>
             <p className="testimonials__rating">
               <span aria-label="5 out of 5 stars">{"\u2605\u2605\u2605\u2605\u2605"}</span>
-              <strong>5.0</strong> from 19 Google reviews
+              {home?.reviewsSummary || "5.0 from 19 Google reviews"}
             </p>
           </div>
           <ul className="testimonial-grid" aria-label="Customer reviews">
@@ -359,7 +366,7 @@ export default async function Home() {
 
         <section className="faq" id="faq" aria-labelledby="faq-title">
           <div className="faq__top">
-            <p className="eyebrow">Good to know</p>
+            <p className="eyebrow">{home?.faqEyebrow || "Good to know"}</p>
             <h2 id="faq-title">{home?.faqHeading || "Questions, answered."}</h2>
           </div>
           <div className="faq-list">
@@ -379,7 +386,7 @@ export default async function Home() {
 
         <section className="quote" id="quote" aria-labelledby="quote-title">
           <div className="quote__copy">
-            <p className="eyebrow">Free quote</p>
+            <p className="eyebrow">{home?.quoteEyebrow || "Free quote"}</p>
             <h2 id="quote-title">{home?.quoteHeading || "Tell us what's dirty. We'll handle the rest."}</h2>
             <p>{home?.quoteBody || "Call or text and we can usually price it right over the phone. Prefer to type? Leave a few details below and Hogwash will follow up with pricing and timing."}</p>
             <a className="quote__phone" href={phoneHref} aria-label={`Call or text Hogwash at ${phoneDisplay}`}>
@@ -391,11 +398,11 @@ export default async function Home() {
 
         <section className="facebook-section" aria-labelledby="facebook-title">
           <div className="facebook-section__copy">
-            <p className="eyebrow">Follow the work</p>
+            <p className="eyebrow">{home?.facebookEyebrow || "Follow the work"}</p>
             <h2 id="facebook-title">{home?.facebookHeading || "The proof is on the page."}</h2>
             <p>{home?.facebookBody || "Fresh before and afters, availability notes, and updates straight from the Hogwash Facebook page. The work speaks for itself."}</p>
             <a className="button button--dark" href={facebookUrl} target="_blank" rel="noreferrer">
-              Open Facebook
+              {home?.facebookButton || "Open Facebook"}
             </a>
           </div>
           <div className="facebook-embed">
