@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://hogwash-gilt.vercel.app"),
   title: "Hogwash Exterior Cleaning | Pressure Washing & House Washing",
   description:
-    "Professional pressure washing serving Dayton and Southwest Ohio. Driveways, siding, decks, fences, trailers, and more. Owner-operated, fully insured, and free quotes. Call or text 562-324-6588.",
+    "Professional pressure washing serving the Dayton area. Driveways, siding, decks, fences, trailers, and more. Owner-operated, fully insured, and free quotes. Call or text 562-324-6588.",
   alternates: {
     canonical: "/",
   },
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     siteName: "Hogwash Exterior Cleaning",
     title: "Hogwash Exterior Cleaning",
     description:
-      "Fully insured pressure washing and exterior cleaning serving Dayton and Southwest Ohio. Free quotes for homes and businesses.",
+      "Fully insured pressure washing and exterior cleaning serving the Dayton area. Free quotes for homes and businesses.",
     images: [
       {
         url: "/hogwash/owner-rig.jpg",
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Hogwash Exterior Cleaning",
     description:
-      "Fully insured pressure washing and exterior cleaning serving Dayton and Southwest Ohio. Free quotes for homes and businesses.",
+      "Fully insured pressure washing and exterior cleaning serving the Dayton area. Free quotes for homes and businesses.",
     images: ["/hogwash/owner-rig.jpg"],
   },
 };

@@ -142,7 +142,7 @@ const faqs = [
   },
   {
     q: "What areas do you serve?",
-    a: "We serve homes and businesses throughout the Dayton area and Southwest Ohio. Not sure if you're in range? Call or text and we'll be happy to confirm service availability.",
+    a: "We serve homes and businesses throughout the Dayton area. Not sure if you're in range? Call or text and we'll be happy to confirm service availability.",
   },
 ];
 
@@ -155,7 +155,7 @@ export async function generateMetadata(): Promise<Metadata> {
       "Pressure Washing Dayton, OH | Hogwash Exterior Cleaning",
     description:
       content?.metaDescription ||
-      "Fully insured pressure washing and exterior cleaning serving Dayton and Southwest Ohio. House washing, driveways, roofs, decks, and more. Free quotes.",
+      "Fully insured pressure washing and exterior cleaning serving the Dayton area. House washing, driveways, roofs, decks, and more. Free quotes.",
     alternates: {
       canonical: "/",
     },
@@ -212,7 +212,7 @@ export default async function Home() {
           <HeroSlideshow />
           <div className="hero-grand__content">
             <p className="eyebrow eyebrow--light">
-              Serving Dayton and Southwest Ohio
+              Serving the Dayton area
             </p>
             <h1 id="hero-title">{heroTitle}</h1>
             <p className="hero-grand__lede">
@@ -432,7 +432,7 @@ export default async function Home() {
           />
           <div>
             <p className="footer__name">Hogwash Exterior Cleaning</p>
-            <p className="footer__tag">Serving homes and businesses across Dayton and Southwest Ohio.</p>
+            <p className="footer__tag">Serving homes and businesses throughout the Dayton area.</p>
           </div>
         </div>
         <nav className="footer__nav" aria-label="Footer navigation">

@@ -91,7 +91,7 @@ export default async function PublishedContentPage({ params }: PageProps) {
           />
           <div>
             <p className="footer__name">Hogwash Exterior Cleaning</p>
-            <p className="footer__tag">Serving homes and businesses across Dayton and Southwest Ohio.</p>
+            <p className="footer__tag">Serving homes and businesses throughout the Dayton area.</p>
           </div>
         </div>
         <a className="footer__phone" href={phoneHref}>{phoneDisplay}</a>
